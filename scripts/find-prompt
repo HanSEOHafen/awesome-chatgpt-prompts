@@ -1,3 +1,16 @@
 #!/usr/bin/env bash
 
-curl -s https://raw.githubusercontent.com/f/awesome-chatgpt-prompts/main/prompts.csv | tail +2 | ruby -rcsv -e 'CSV.parse(STDIN.read) {|row| puts row.join("\t")}' | fzf -1 -q "$1" --with-nth 1 --delimiter "\t" --preview 'echo {2} | fold -s -w $(tput cols)' | cut -d"	" -f2
+# Use 'curl' with the '-s' (silent) flag to prevent progress meter from being displayed
+curl_output=$(curl -s https://raw.githubusercontent.com/f/awesome-chatgpt-prompts/main/prompts.csv)
+
+# Skip the first line (header) using 'tail'
+tail_output=$(echo "$curl_output" | tail +2)
+
+# Use 'ruby' to parse CSV data and join fields with a tab character
+ruby_output=$(echo "$tail_output" | ruby -rcsv -e 'CSV.parse(STDIN.read) {|row| puts row.join("	")}')
+
+# Use 'fzf' to search the parsed CSV data
+selected_line=$(echo "$ruby_output" | fzf -1 -q "$1" --with-nth 1 --delimiter "\t" --preview 'echo {2} | fold -s -w $(tput cols)')
+
+# Extract the second field of the selected line using 'cut'
+echo "$selected_line" | cut -d"	" -f2
