@@ -1,5 +1,22 @@
+// Define an object called 'prompts'
 const prompts = {
+  // Add a property to the 'prompts' object called 'chat'
+  // Set the value of the 'chat' property to the string 'Hello, world!'
   chat: 'Hello, world!'
 };
 
+// Log the value of the 'chat' property to the console
 console.log(prompts.chat); // Output: 'Hello, world!'
+
+
+
+// Define an object called 'prompts'
+const prompts = {
+  // Add a property to the 'prompts' object called 'chat'
+  // Set the value of the 'chat' property to the string 'Hello, world!'
+  chat: 'Hello, world!'
+};
+
+// Log the value of the 'chat' property to the console
+console.log(prompts.chat); // Output: 'Hello, world!'
+
