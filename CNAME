@@ -1,1 +1,5 @@
-prompts.chat
+const prompts = {
+  chat: 'Hello, world!'
+};
+
+console.log(prompts.chat); // Output: 'Hello, world!'
